@@ -1,10 +1,41 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="refresh" content="0;url=https://play.google.com/store/apps/details?id=com.agniTeck.detectClicker">
   <title>Redirecting...</title>
+
+  <!-- Google Analytics 4 -->
+  <!-- REPLACE G-XXXXXXXXXX with your real Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-84YM21NL3G"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-84YM21NL3G');
+
+    var PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.agniTeck.detectClicker';
+
+    // Fallback: redirect even if GA fails to load
+    var redirectTimer = setTimeout(function() {
+      window.location.href = PLAY_STORE_URL;
+    }, 1500);
+
+    // Fire event, then redirect immediately after GA confirms it sent
+    window.addEventListener('load', function() {
+      gtag('event', 'ad_redirect', {
+        'event_category': 'YouTube Ad',
+        'event_label': 'Play Store Click',
+        'event_callback': function() {
+          clearTimeout(redirectTimer);
+          window.location.href = PLAY_STORE_URL;
+        }
+      });
+    });
+  </script>
 </head>
 <body>
-  <p>Redirecting to app, Please Wait...</p>
+  <p style="font-family: sans-serif; text-align: center; margin-top: 40px; color: #555;">
+    Taking you to the app...
+  </p>
 </body>
 </html>
